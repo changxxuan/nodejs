@@ -1,5 +1,3 @@
-//import { reject } from './C:/Users/charice.chang/AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/async';
-
 const mongoose = require('./db.js');
 
 //定义Schema
@@ -83,7 +81,7 @@ module.exports = {
 	getProducts: async(ctx, next) => {
 		var products =[];
 		var promise = new Promise((resolve,reject) => {
-            Product.find({}, function(err, res){  //数据库查询为异步操作
+            Product.find({}, function(err, res){
 				if (err) {
 					console.log("Error:" + err);
 					reject(err);
@@ -103,7 +101,7 @@ module.exports = {
 	getProduct: async(id) => {
 		var product = null;
 		console.log("id:" + id);
-		var promise = new Promise((resolve,reject) => {    //数据库查询为异步操作
+		var promise = new Promise((resolve,reject) => {    //数据库查询为异步操作，等待异步返回结果
             Product.find({'_id': id}, function(err, res){
 				if (err) {
 					console.log("Error:" + err);
@@ -118,15 +116,5 @@ module.exports = {
         })
 		await promise;
 		return product;
-		
-		// await Product.find({'_id': id}, function(err, res){
-		// 	if (err) {
-		// 		console.log("Error:" + err);
-		// 	}
-		// 	else {
-		// 		console.log("Res:" + res);
-		// 		product = res;
-		// 	}
-		// });
 	}
 }
